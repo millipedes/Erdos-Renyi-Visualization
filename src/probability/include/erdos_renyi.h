@@ -3,7 +3,7 @@
 
 #include "../../canvas/include/canvas.h"
 
-#define CANVAS_DIMS 1000
+#define CANVAS_DIMSS 1000
 #define NAME_CHAR 'n'
 
 canvas Gnp(int n, double p);

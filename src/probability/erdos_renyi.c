@@ -1,7 +1,7 @@
 #include "include/erdos_renyi.h"
 
 canvas Gnp(int n, double p) {
-  canvas the_canvas = init_canvas(CANVAS_DIMS, CANVAS_DIMS);
+  canvas the_canvas = init_canvas(CANVAS_DIMSS, CANVAS_DIMSS);
   node * graph = make_circular_node_collection(the_canvas, n);
   for(int i = 0; i < n; i++)
     for(int j = 0; j < n; j++)
@@ -10,6 +10,7 @@ canvas Gnp(int n, double p) {
           connect_node(the_canvas, graph[i], graph[j]);
   for(int i = 0; i < n; i++)
     free_node(graph[i]);
+  free(graph);
   return the_canvas;
 }
 
@@ -20,7 +21,7 @@ canvas Gnm(int n, int m) {
   int current_collection_index = 0;
   int i_rand = 0;
   int j_rand = 0;
-  canvas the_canvas = init_canvas(CANVAS_DIMS, CANVAS_DIMS);
+  canvas the_canvas = init_canvas(CANVAS_DIMSS, CANVAS_DIMSS);
   node * graph = make_circular_node_collection(the_canvas, n);
   while(tmp > 0) {
     i_rand = rand() % n;
@@ -36,12 +37,17 @@ canvas Gnm(int n, int m) {
   }
   for(int i = 0; i < m; i++)
     connect_node(the_canvas, graph[i_collection[i]], graph[j_collection[i]]);
+  for(int i = 0; i < n; i++)
+    free_node(graph[i]);
+  free(graph);
+  free(i_collection);
+  free(j_collection);
   return the_canvas;
 }
 
 node * make_circular_node_collection(canvas the_canvas, int n) {
-  int central_radius = (int)((double)CANVAS_DIMS / 3.0);
-  int central_xy = CANVAS_DIMS / 2;
+  int central_radius = (int)((double)CANVAS_DIMSS / 3.0);
+  int central_xy = CANVAS_DIMSS / 2;
   double angle_between_node = 2 * M_PI / (double) n;
   int * x_coords = calloc(n, sizeof(int));
   int * y_coords = calloc(n, sizeof(int));
