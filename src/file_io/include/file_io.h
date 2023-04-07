@@ -16,7 +16,7 @@
 #define FONT_SIZE    "FONT_SIZE"
 #define PATH_TO_FONT "PATH_TO_FONT"
 #define CANVAS_DIMS  "CANVAS_DIMS"
-#define GPN          "GPN"
+#define GPN          "GNP"
 #define GNM          "GNM"
 #define OUT_FILE     "OUT_FILE"
 

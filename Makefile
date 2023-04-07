@@ -43,6 +43,9 @@ vimh:
 run:
 	$(EXEFILE)
 
+run-configs:
+	$(EXEFILE) ./example_config/config_one ./example_config/config_two ./example_config/config_three
+
 debug:
 	gdb -q $(EXEFILE)
 
