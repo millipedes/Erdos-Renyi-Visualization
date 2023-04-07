@@ -2,6 +2,6 @@
 
 # :hammer: Building
 
-# :thought_ballon: Theory
+# :thought_balloon: Theory
 
 ## Run Time of Inscribing Geometric Figures
