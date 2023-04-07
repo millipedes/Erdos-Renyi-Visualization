@@ -26,15 +26,16 @@ void debug_canvas(canvas the_canvas) {
  * @param
  * @return
  */
-canvas write_node(canvas the_canvas, node the_node) {
+canvas write_node(canvas the_canvas, node the_node, const char * path_to_font,
+    const int font_size) {
   int x = 0;
   int y = the_node->radius;
   int err = 3 - 2 * the_node->radius;
   FT_Library ft;
   FT_Init_FreeType(&ft);
   FT_Face face;
-  FT_New_Face(ft, "fonts/FiraCode-Bold.ttf", 0, &face);
-  FT_Set_Pixel_Sizes(face, 0, 24);
+  FT_New_Face(ft, path_to_font, 0, &face);
+  FT_Set_Pixel_Sizes(face, 0, font_size);
   int white_len = (int)strnlen(the_node->name, MAX_NAME_LEN);
   // Draw the circle
   update_points(the_canvas, the_node, x, y);

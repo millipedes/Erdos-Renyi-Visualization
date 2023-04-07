@@ -93,7 +93,7 @@ g_struct parse_g_struct(char * buf, int current_index, char m_or_p) {
       while(!IS_COMMA(buf[current_index])) current_index++;
       // The comma itself
       current_index++;
-      int p = atof(buf + current_index);
+      double p = atof(buf + current_index);
       return init_gnp(n, p);
   }
   fprintf(stderr, "[PARSE_G_sTRUCT]: Error Parsing G Variation\n");

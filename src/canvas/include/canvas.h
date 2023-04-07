@@ -16,7 +16,8 @@ typedef struct CANVAS_T {
 
 canvas init_canvas(int height, int width);
 void debug_canvas(canvas the_canvas);
-canvas write_node(canvas the_canvas, node the_node);
+canvas write_node(canvas the_canvas, node the_node, const char * path_to_font,
+    const int font_size);
 canvas update_points(canvas the_canvas, node the_node, int x, int y);
 canvas connect_node(canvas the_canvas, node parent, node child);
 void write_canvas(canvas the_canvas, char * file_name);
