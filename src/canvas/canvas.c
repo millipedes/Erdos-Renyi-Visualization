@@ -35,7 +35,7 @@ canvas write_node(canvas the_canvas, node the_node) {
   FT_Face face;
   FT_New_Face(ft, "fonts/FiraCode-Bold.ttf", 0, &face);
   FT_Set_Pixel_Sizes(face, 0, 60);
-  int white_len = (int)strnlen(the_node->the_move->white, MAX_MOVE_SIZE);
+  int white_len = (int)strnlen(the_node->name, MAX_NAME_LEN);
   // Draw the circle
   update_points(the_canvas, the_node, x, y);
   while(y >= x) {
@@ -49,7 +49,7 @@ canvas write_node(canvas the_canvas, node the_node) {
   }
   // Draw the move letters
   for(int i = 0; i < white_len; i++) {
-    FT_Load_Char(face, (int)the_node->the_move->white[i], FT_LOAD_RENDER);
+    FT_Load_Char(face, (int)the_node->name[i], FT_LOAD_RENDER);
     FT_GlyphSlot slot = face->glyph;
     int y_min = the_node->fy - (int)((double)slot->bitmap.rows / 2.0);
     int y_max = the_node->fy + (int)((double)slot->bitmap.rows / 2.0);

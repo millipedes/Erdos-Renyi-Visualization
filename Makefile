@@ -25,7 +25,7 @@ objects: $(HCANVAS) $(HMOVE) $(CCANVAS) $(CMOVE) $(CMAIN)
 	$(CC) -c ./src/main/main.c -o ./src/main/main.o $(POST_FLAGS)
 
 vim:
-	nvim $(CFILES) 
+	nvim $(CCANVAS) $(CMOVE) $(CMAIN)
 
 vimh:
 	nvim $(HFILES) 
@@ -47,7 +47,7 @@ plant:
 	convert docs/uml.png -channel RGB -negate docs/uml.png
 
 git-update:
-	git add Makefile README.md src/ docs/ nix/
+	git add Makefile README.md src/ nix/
 
 clean:
 	- rm $(OCANVAS)
