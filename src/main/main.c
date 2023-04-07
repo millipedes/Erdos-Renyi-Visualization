@@ -4,7 +4,8 @@
 
 int main(void) {
   srand(time(NULL));
-  canvas the_canvas = G(15, 0.45);
+  // canvas the_canvas = Gnp(15, 0.15);
+  canvas the_canvas = Gnm(15, 10);
   write_canvas(the_canvas, "test.ppm");
   free_canvas(the_canvas);
   // connection_test();

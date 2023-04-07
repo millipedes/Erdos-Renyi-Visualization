@@ -2,9 +2,7 @@
 
 node init_node(char * name, pixel color, int fx, int fy, int radius) {
   node the_node = calloc(1, sizeof(struct NODE_T));
-  size_t name_len = strnlen(name, MAX_NAME_LEN);
-  the_node->name = calloc(name_len + 1, sizeof(char));
-  strncpy(the_node->name, name, name_len);
+  the_node->name = name;
   the_node->color = color;
   the_node->fx = fx;
   the_node->fy = fy;

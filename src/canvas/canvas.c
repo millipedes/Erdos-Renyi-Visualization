@@ -34,7 +34,7 @@ canvas write_node(canvas the_canvas, node the_node) {
   FT_Init_FreeType(&ft);
   FT_Face face;
   FT_New_Face(ft, "fonts/FiraCode-Bold.ttf", 0, &face);
-  FT_Set_Pixel_Sizes(face, 0, 36);
+  FT_Set_Pixel_Sizes(face, 0, 24);
   int white_len = (int)strnlen(the_node->name, MAX_NAME_LEN);
   // Draw the circle
   update_points(the_canvas, the_node, x, y);
@@ -154,24 +154,17 @@ canvas connect_node(canvas the_canvas, node parent, node child) {
     x_start = x_end;
     x_end = tmp;
   }
-  if(x_start == x_end && parent->fy < child->fy) {
-    // printf("1) xs: %d xe: %d pfy: %d cfy: %d\n", x_start, x_end, parent->fy, child->fy);
-    // printf("1) m: %d b: %d pfx: %d cfx: %d\n", m, b, parent->fx, child->fx);
+  if(x_start == x_end && parent->fy < child->fy)
     for(int j = parent->fy + parent->radius;
         j < child->fy - child->radius; j++)
       change_color(the_canvas->values[j][parent->fx], parent->color);
-  } else if(x_start == x_end && parent->fy > child->fy) {
-    // printf("2) xs: %d xe: %d pfy: %d cfy: %d\n", x_start, x_end, parent->fy, child->fy);
-    // printf("2) m: %d b: %d pfx: %d cfx: %d\n", m, b, parent->fx, child->fx);
+  else if(x_start == x_end && parent->fy > child->fy)
     for(int j = child->fy + child->radius;
         j < parent->fy - parent->radius; j++)
       change_color(the_canvas->values[j][parent->fx], parent->color);
-  } else {
-    // printf("3) xs: %d xe: %d pfy: %d cfy: %d\n", x_start, x_end, parent->fy, child->fy);
-    // printf("3) m: %d b: %d pfx: %d cfx: %d\n", m, b, parent->fx, child->fx);
+  else
     for(int j = x_start; j <= x_end; j++)
       change_color(the_canvas->values[(int)(m * j + b)][j], parent->color);
-  }
   return the_canvas;
 }
 
