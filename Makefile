@@ -1,13 +1,17 @@
 CC=gcc -g -Wall -Wextra
 POST_FLAGS=-lm -lfreetype
 
+CTESTS=$(wildcard ./tests/*.c)
+OTESTS=$(CTESTS:.c=.o)
+HTESTS=$(wildcard ./tests/include/*.h)
+
+CPROB=$(wildcard ./src/probability/*.c)
+HPROB=$(wildcard ./src/probability/include/*.h)
+OPROB=$(CPROB:.c=.o)
+
 CCANVAS=$(wildcard ./src/canvas/*.c)
 HCANVAS=$(wildcard ./src/canvas/include/*.h)
 OCANVAS=$(CCANVAS:.c=.o)
-
-CMOVE=$(wildcard ./src/move/*.c)
-HMOVE=$(wildcard ./src/move/include/*.h)
-OMOVE=$(CMOVE:.c=.o)
 
 CMAIN=$(wildcard ./src/main/*.c)
 OMAIN=$(CMAIN:.c=.o)
@@ -15,17 +19,18 @@ OMAIN=$(CMAIN:.c=.o)
 EXEFILE=bin/main
 
 all: objects
-	$(CC) $(OCANVAS) $(OMOVE) $(OMAIN) -o $(EXEFILE) $(POST_FLAGS)
+	$(CC) $(OCANVAS) $(OMAIN) $(OTESTS) $(OPROB) -o $(EXEFILE) $(POST_FLAGS)
 
-objects: $(HCANVAS) $(HMOVE) $(CCANVAS) $(CMOVE) $(CMAIN)
-	$(CC) -c ./src/move/move.c -o ./src/move/move.o $(POST_FLAGS)
+objects: $(HCANVAS) $(CCANVAS) $(CMOVE) $(CMAIN) $(CTESTS) $(HTESTS) $(HPROB) $(CPROB)
 	$(CC) -c ./src/canvas/pixel.c -o ./src/canvas/pixel.o $(POST_FLAGS)
 	$(CC) -c ./src/canvas/node.c -o ./src/canvas/node.o $(POST_FLAGS)
+	$(CC) -c ./src/probability/erdos_renyi.c -o ./src/probability/erdos_renyi.o $(POST_FLAGS)
 	$(CC) -c ./src/canvas/canvas.c -o ./src/canvas/canvas.o $(POST_FLAGS)
+	$(CC) -c ./tests/connections.c -o ./tests/connections.o $(POST_FLAGS)
 	$(CC) -c ./src/main/main.c -o ./src/main/main.o $(POST_FLAGS)
 
 vim:
-	nvim $(CCANVAS) $(CMOVE) $(CMAIN)
+	nvim $(CCANVAS) $(CMAIN) $(CTESTS) $(CPROB)
 
 vimh:
 	nvim $(HFILES) 
@@ -52,5 +57,6 @@ git-update:
 clean:
 	- rm $(OCANVAS)
 	- rm $(OMAIN)
-	- rm $(OMOVE)
+	- rm $(OPROB)
+	- rm $(OTESTS)
 	- rm $(EXEFILE)
