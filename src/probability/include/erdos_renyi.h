@@ -3,6 +3,9 @@
 
 #include "../../canvas/include/canvas.h"
 
-// canvas G(int n, double p);
+#define CANVAS_DIMS 1000
+
+canvas G(int n, double p);
+int random_number(void);
 
 #endif

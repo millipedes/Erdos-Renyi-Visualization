@@ -4,6 +4,9 @@
 
 int main(void) {
   srand(time(NULL));
-  connection_test();
+  canvas the_canvas = G(15, 0.45);
+  write_canvas(the_canvas, "test.ppm");
+  free_canvas(the_canvas);
+  // connection_test();
   return 0;
 }
