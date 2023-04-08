@@ -3,7 +3,7 @@ This program uses the Erd&#x0151;s-R&#x00E9;nyi Model of random graphs to
 produce visual graphs for the user to analyze. Additionally with some tweaks it
 can virtualize the method and take statistics over the virtualization.
 
-![Example](./reference_images/example_image.png)
+![Example](/reference_images/example_image.png)
 
 It does this by producing [netpbm files](https://en.wikipedia.org/wiki/Netpbm).
 For more information on netpbm files and my recomendations on using them see the
@@ -77,7 +77,7 @@ These parameters are pretty self explanitory, you can use single or double
 quotes for the file names. Also note that any `.ttf` font file can be used, just
 specify the correct path from where you are running the binary.
 
-## A Not For .ppm
+## A Note For .ppm
 There are two options for getting around this:
  - Get an image viewer to view the `.ppm` file.
  - Get a converion tool to convert to .png.
