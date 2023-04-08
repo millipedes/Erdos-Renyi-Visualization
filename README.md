@@ -42,7 +42,6 @@ file (see `Running` below).
 
 Once you have ensured that these programs are installed, run the following:
 ```
-mkdir bin/
 make
 ```
 This will build the program, into a binary called `main` in the directory
@@ -77,11 +76,14 @@ These parameters are pretty self explanitory, you can use single or double
 quotes for the file names. Also note that any `.ttf` font file can be used, just
 specify the correct path from where you are running the binary.
 
+Also it should be noted that any of these parameters can just not be specified,
+but they will just go to the defaults.
+
 ## A Note For .ppm
 There are two options for getting around this:
  - Get an image viewer to view the `.ppm` file.
  - Get a converion tool to convert to .png.
-### Image view
+### Image Viewer
 I recommend feh. For distros with apt:
 ```
 sudo apt update && sudo apt upgrade
