@@ -1,5 +1,20 @@
+/**
+ * @file   canvas.c
+ * @brief  This file contains those functions which are related to executing the
+ * GNP and GNM variations of the erdos_renyi RGT.
+ * @author Matthew C. Lindeman
+ * @date   Arpil 07, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #include "include/erdos_renyi.h"
 
+/**
+ * This function executed the GNP variation (if any user parameter is not
+ * specified or NULL is sent to this function it will fallback on the defaults).
+ * @param the_user_params - The user paramters that were specified.
+ * @return     the_canvas - The canvas with with GNP executed on it.
+ */
 canvas Gnp(user_params the_user_params) {
   canvas the_canvas = NULL;
   node * graph = NULL;
@@ -35,6 +50,12 @@ canvas Gnp(user_params the_user_params) {
   return the_canvas;
 }
 
+/**
+ * This function executed the GNM variation (if any user parameter is not
+ * specified or NULL is sent to this function it will fallback on the defaults).
+ * @param the_user_params - The user paramters that were specified.
+ * @return     the_canvas - The canvas with with GNM executed on it.
+ */
 canvas Gnm(user_params the_user_params) {
   int current_collection_index = 0;
   int i_rand = 0;
@@ -87,6 +108,15 @@ canvas Gnm(user_params the_user_params) {
   return the_canvas;
 }
 
+/**
+ * This function arranges the nodes so it is ``human readible" (in a circle).
+ * @param   the_canvas - The canvas that the nodes will be arranged on.
+ * @param            n - The n parameter of the erdos_renyi variation.
+ * @param path_to_font - The path to the font file.
+ * @param    font_size - The size of the font.
+ * @param  canvas_dims - The dimension of the height and width of the canvas.
+ * @return       graph - The nodes properly arranged.
+ */
 node * make_circular_node_collection(canvas the_canvas, int n,
     const char * path_to_font, const int font_size, const int canvas_dims) {
   int central_radius = (int)((double)canvas_dims / 3.0);
@@ -109,6 +139,14 @@ node * make_circular_node_collection(canvas the_canvas, int n,
   return graph;
 }
 
+/**
+ * This function determines if value is in collection from 0 to index.
+ * @param collection - The collection of integers to check.
+ * @param      value - The value to check for.
+ * @param      index - The index to check up to.
+ * @return         1 - Found.
+ *                -1 - Not Found.
+ */
 int not_in_collection(int * collection, int value, int index) {
   for(int i = 0; i < index; i++)
     if(collection[i] == value)
@@ -116,6 +154,11 @@ int not_in_collection(int * collection, int value, int index) {
   return 1;
 }
 
+/**
+ * This function makes a node name from an integer.
+ * @param     i - The int to be appended to NAME_CHAR.
+ * @return name - The NAME_CHAR with i appended to it.
+ */
 char * make_node_name(int i) {
   int name_len = snprintf(NULL, 0, "%d", i) + 1;
   char * name = calloc(name_len + 1, sizeof(char));
@@ -124,6 +167,11 @@ char * make_node_name(int i) {
   return name;
 }
 
+/**
+ * Returns an integer from 0-99.
+ * @param N/a
+ * @return .\ - An int from 0-99.
+ */
 int random_number(void) {
   return rand() % 100;
 }

@@ -1,5 +1,21 @@
+/**
+ * @file   file_io.c
+ * @brief  This function contains all of the functions related to file io and
+ * the data structures g_struct (what variation of the Erdos Renyi RGT) is being
+ * written and the user_params data struct (i.e. parameters the user can tweak).
+ * @author Matthew C. Lindeman
+ * @date   April 07, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #include "include/file_io.h"
 
+/**
+ * This function initializes a g_struct (GNP) data structure.
+ * @param             n - The n parameter.
+ * @param             p - The p parameter.
+ * @return the_g_struct - The inited g struct.
+ */
 g_struct init_gnp(int n, double p) {
   g_struct the_g_struct = calloc(1, sizeof(struct G_STRUCT_T));
   the_g_struct->m_or_p = 'p';
@@ -8,6 +24,12 @@ g_struct init_gnp(int n, double p) {
   return the_g_struct;
 }
 
+/**
+ * This function initializes a g_struct (GNM) data structure.
+ * @param             n - The n parameter.
+ * @param             m - The m parameter.
+ * @return the_g_struct - The inited g struct.
+ */
 g_struct init_gnm(int n, int m) {
   g_struct the_g_struct = calloc(1, sizeof(struct G_STRUCT_T));
   the_g_struct->m_or_p = 'm';
@@ -16,6 +38,11 @@ g_struct init_gnm(int n, int m) {
   return the_g_struct;
 }
 
+/**
+ * This function debugs a g_struct.
+ * @param the_g_struct - the g_struct to be debugged.
+ * @return         N/a
+ */
 void debug_g_struct(g_struct the_g_struct) {
   switch(the_g_struct->m_or_p) {
     case 'm':
@@ -27,11 +54,22 @@ void debug_g_struct(g_struct the_g_struct) {
   }
 }
 
+/**
+ * This function frees a g_struct.
+ * @param the_g_struct - the g_struct to be freed.
+ * @return         N/a
+ */
 void free_g_struct(g_struct the_g_struct) {
   if(the_g_struct)
     free(the_g_struct);
 }
 
+/**
+ * This function initializes the user_params data struct from the given config
+ * file, see the docs for more info on the config file.
+ * @param      config_file - The path to the config file.
+ * @return the_user_params - The inited user params.
+ */
 user_params init_user_params(char * config_file) {
   FILE * fp = fopen(config_file, "r");
   user_params the_user_params = calloc(1, sizeof(struct USER_PARAMS_T));
@@ -77,6 +115,13 @@ user_params init_user_params(char * config_file) {
   return the_user_params;
 }
 
+/**
+ * This function parses a g struct and assigns parameters appropriately.
+ * @param           buf - The buffer from which the g_struct is being parsed.
+ * @param current_index - The current_index of the buffer being parsed.
+ * @param        m_or_p - If it is GNP or GNM.
+ * @return           .\ - The g inited struct.
+ */
 g_struct parse_g_struct(char * buf, int current_index, char m_or_p) {
   while(!IS_WHITESPACE(buf[current_index])) current_index++;
   int n = 0;
@@ -100,6 +145,12 @@ g_struct parse_g_struct(char * buf, int current_index, char m_or_p) {
   return NULL;
 }
 
+/**
+ * This function parses a file (output or font).
+ * @param           buf - The buffer from which the file is being parsed.
+ * @param current_index - The current_index of the buffer being parsed.
+ * @return         path - The file name.
+ */
 char * parse_file(char * buf, int current_index) {
   char * path = NULL;
   int path_start = 0;
@@ -114,6 +165,12 @@ char * parse_file(char * buf, int current_index) {
   return path;
 }
 
+/**
+ * This function parses a pixel struct and assigns parameters appropriately.
+ * @param           buf - The buffer from which the pixel is being parsed.
+ * @param current_index - The current_index of the buffer being parsed.
+ * @return           .\ - The inited pixel struct.
+ */
 pixel parse_pixel(char * buf, int current_index) {
   while(!IS_WHITESPACE(buf[current_index])) current_index++;
   int r = atoi(buf + current_index);
@@ -128,6 +185,11 @@ pixel parse_pixel(char * buf, int current_index) {
   return init_pixel(r, g, b);
 }
 
+/**
+ * This function debugs a user_params data structure.
+ * @param the_user_params - The user_params data structure to be debugged.
+ * @return           N/a
+ */
 void debug_user_params(user_params the_user_params) {
   printf("[USER_PARAMS]\n");
   if(the_user_params->node_color)
@@ -144,6 +206,11 @@ void debug_user_params(user_params the_user_params) {
       the_user_params->canvas_dims);
 }
 
+/**
+ * This function frees a user_params data structure.
+ * @param the_user_params - The user_params data structure to be freed.
+ * @return           N/a
+ */
 void free_user_params(user_params the_user_params) {
   if(the_user_params) {
     if(the_user_params->node_color)

@@ -1,3 +1,11 @@
+/**
+ * @file   pixel.h
+ * @brief  This file contains the function definitions for pixel.c.
+ * @author Matthew C. Lindeman
+ * @date   Arpil 07, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #ifndef PIX_H
 #define PIX_H
 

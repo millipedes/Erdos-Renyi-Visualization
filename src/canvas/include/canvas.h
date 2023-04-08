@@ -1,3 +1,11 @@
+/**
+ * @file   canvas.h
+ * @brief  This file contains the function definitions for canvas.c.
+ * @author Matthew C. Lindeman
+ * @date   April 07, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #ifndef CAN_H
 #define CAN_H
 

@@ -1,5 +1,20 @@
+/**
+ * @file   canvas.c
+ * @brief  This file contains the functions related to the canvas data
+ * structure.
+ * @author Matthew C. Lindeman
+ * @date   April 07, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #include "include/canvas.h"
 
+/**
+ * This function initializes a function with dimensions heighxwidth.
+ * @param      height - The height of the canvas.
+ * @param       width - The width of the canvas.
+ * @return the_canvas - The inited canvas.
+ */
 canvas init_canvas(int height, int width) {
   canvas the_canvas = calloc(1, sizeof(struct CANVAS_T));
   the_canvas->height = height;
@@ -13,6 +28,11 @@ canvas init_canvas(int height, int width) {
   return the_canvas;
 }
 
+/**
+ * This function debugs a canvas.
+ * @param the_canvas - The canvas to be debugged.
+ * @return       N/a
+ */
 void debug_canvas(canvas the_canvas) {
   printf("[CANVAS]\n");
   printf("Height: %d Width: %d\n", the_canvas->height, the_canvas->width);
@@ -23,8 +43,11 @@ void debug_canvas(canvas the_canvas) {
 
 /**
  * This function uses Bresenham's circle drawing algorithm to draw the nodes.
- * @param
- * @return
+ * @param   the_canvas - The canvas that the node will be written to.
+ * @param     the_node - The node to be drawn.
+ * @param path_to_font - The path to the font file.
+ * @param    font_size - The size of the font.
+ * @return  the_canvas - The canvas with the node written to it.
  */
 canvas write_node(canvas the_canvas, node the_node, const char * path_to_font,
     const int font_size) {
@@ -72,6 +95,15 @@ canvas write_node(canvas the_canvas, node the_node, const char * path_to_font,
   return the_canvas;
 }
 
+/**
+ * This function is used by write_node to write the nodes to the canvas (look up
+ * Bresenham's circle drawing algorithm).
+ * @param  the_canvas - The canvas that the node will be written to.
+ * @param    the_node - The node that is being written to the the canvas.
+ * @param           x - The x value that is being written.
+ * @param           y - The y value that is being written.
+ * @return the_canvas - The canvas that has been written to.
+ */
 canvas update_points(canvas the_canvas, node the_node, int x, int y) {
   if(y + the_node->fy < the_canvas->height
       && y + the_node->fy > 0
@@ -169,6 +201,12 @@ canvas connect_node(canvas the_canvas, node parent, node child) {
   return the_canvas;
 }
 
+/**
+ * This function writes the_canvas to the file specified by file_name.
+ * @param the_canvas - The canvas that will be written.
+ * @param  file_name - The name of the file to be written.
+ * @return       N/a
+ */
 void write_canvas(canvas the_canvas, char * file_name) {
   FILE * fp = fopen(file_name, "w");
   fprintf(fp, "%s\n", PPM_HEADER);
@@ -180,6 +218,11 @@ void write_canvas(canvas the_canvas, char * file_name) {
   fclose(fp);
 }
 
+/**
+ * This function frees a canvas.
+ * @param the_canvas - The canvas to be freed.
+ * @return       N/a
+ */
 void free_canvas(canvas the_canvas) {
   if(the_canvas) {
     if(the_canvas->values) {

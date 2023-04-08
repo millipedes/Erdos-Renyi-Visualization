@@ -1,3 +1,12 @@
+/**
+ * @file   canvas.h
+ * @brief  This file contains those function defintions and macros for
+ * erdos_renyi.c.
+ * @author Matthew C. Lindeman
+ * @date   Arpil 07, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #ifndef ERD_H
 #define ERD_H
 

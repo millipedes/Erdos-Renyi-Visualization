@@ -1,3 +1,12 @@
+/**
+ * @file   file_io.h
+ * @brief  This function contains the function definitions and macros for
+ * file_io.c.
+ * @author Matthew C. Lindeman
+ * @date   April 07, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #ifndef FIO_H
 #define FIO_H
 

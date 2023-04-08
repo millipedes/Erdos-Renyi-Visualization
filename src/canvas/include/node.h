@@ -1,3 +1,11 @@
+/**
+ * @file   node.h
+ * @brief  This file contains the funciton definitions for node.c.
+ * @author Matthew C. Lindeman
+ * @date   Arpil 07, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #ifndef NODE_H
 #define NODE_H
 
