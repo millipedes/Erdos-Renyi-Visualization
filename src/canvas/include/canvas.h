@@ -22,7 +22,7 @@ typedef struct CANVAS_T {
   int width;
 } * canvas;
 
-canvas init_canvas(int height, int width);
+canvas init_canvas(int height, int width, int r, int g, int b);
 void debug_canvas(canvas the_canvas);
 canvas write_node(canvas the_canvas, node the_node, const char * path_to_font,
     const int font_size);

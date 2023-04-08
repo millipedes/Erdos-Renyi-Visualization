@@ -15,7 +15,7 @@
  * @param       width - The width of the canvas.
  * @return the_canvas - The inited canvas.
  */
-canvas init_canvas(int height, int width) {
+canvas init_canvas(int height, int width, int r, int g, int b) {
   canvas the_canvas = calloc(1, sizeof(struct CANVAS_T));
   the_canvas->height = height;
   the_canvas->width = width;
@@ -23,7 +23,7 @@ canvas init_canvas(int height, int width) {
   for(int i = 0; i < height; i++) {
     the_canvas->values[i] = calloc(width, sizeof(struct PIXEL_T *));
     for(int j = 0; j < width; j++)
-      the_canvas->values[i][j] = init_pixel(MIN_COL, MIN_COL, MIN_COL);
+      the_canvas->values[i][j] = init_pixel(r, g, b);
   }
   return the_canvas;
 }
