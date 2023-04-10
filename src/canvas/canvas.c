@@ -218,6 +218,32 @@ void write_canvas(canvas the_canvas, char * file_name) {
   fclose(fp);
 }
 
+void write_canvas_png(canvas the_canvas, char * file_name) {
+  FILE * fp = fopen(file_name, "w");
+  png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+  png_infop info_ptr = png_create_info_struct(png_ptr);
+  png_init_io(png_ptr, fp);
+  png_set_IHDR(png_ptr, info_ptr, the_canvas->width, the_canvas->height, 8,
+      PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT,
+      PNG_FILTER_TYPE_DEFAULT);
+  png_write_info(png_ptr, info_ptr);
+  for (int i = 0; i < the_canvas->height; i++) {
+    png_bytep row = calloc(the_canvas->width * 3, sizeof(png_byte));
+    for(int j = 0; j < the_canvas->width; j++) {
+      row[3*j + 0] = (png_byte) the_canvas->values[i][j]->r;
+      row[3*j + 1] = (png_byte) the_canvas->values[i][j]->g;
+      row[3*j + 2] = (png_byte) the_canvas->values[i][j]->b;
+    }
+    png_write_row(png_ptr, row);
+    free(row);
+    row = NULL;
+  }
+
+  png_write_end(png_ptr, info_ptr);
+  png_destroy_write_struct(&png_ptr, &info_ptr);
+  fclose(fp);
+}
+
 /**
  * This function frees a canvas.
  * @param the_canvas - The canvas to be freed.

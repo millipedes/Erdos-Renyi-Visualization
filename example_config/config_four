@@ -4,4 +4,4 @@ FONT_SIZE    60
 PATH_TO_FONT "fonts/FiraCode-Bold.ttf"
 CANVAS_DIMS  3840
 GNP          30, 1.0
-OUT_FILE     "test2.png"
+OUT_FILE     "test4.ppm"

@@ -11,6 +11,7 @@
 
 #include <math.h>
 #include <ft2build.h>
+#include <png.h>
 #include "node.h"
 #include FT_FREETYPE_H
 
@@ -29,6 +30,7 @@ canvas write_node(canvas the_canvas, node the_node, const char * path_to_font,
 canvas update_points(canvas the_canvas, node the_node, int x, int y);
 canvas connect_node(canvas the_canvas, node parent, node child);
 void write_canvas(canvas the_canvas, char * file_name);
+void write_canvas_png(canvas the_canvas, char * file_name);
 void free_canvas(canvas the_canvas);
 
 #endif

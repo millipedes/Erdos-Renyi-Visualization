@@ -1,5 +1,5 @@
 CC=gcc -g -Wall -Wextra
-POST_FLAGS=-lm -lfreetype
+POST_FLAGS=-lm -lfreetype -lpng
 
 CTESTS=$(wildcard ./tests/*.c)
 OTESTS=$(CTESTS:.c=.o)

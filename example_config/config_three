@@ -2,6 +2,6 @@ NODE_COLOR   0,190,255
 CANVAS_COLOR 0,10,11
 FONT_SIZE    60
 PATH_TO_FONT "fonts/FiraCode-Bold.ttf"
-CANVAS_DIMS  1000
-GNP          15, 0.75
-OUT_FILE     "test3.ppm"
+CANVAS_DIMS  3840
+GNP          35, 1.0
+OUT_FILE     "test3.png"

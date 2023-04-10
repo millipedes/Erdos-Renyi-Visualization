@@ -17,9 +17,9 @@
  */
 pixel init_pixel(int r, int g, int b) {
   pixel the_pixel = calloc(1, sizeof(struct PIXEL_T));
-  the_pixel->r = r;
-  the_pixel->g = g;
-  the_pixel->b = b;
+  the_pixel->r = (int)r;
+  the_pixel->g = (int)g;
+  the_pixel->b = (int)b;
   return the_pixel;
 }
 

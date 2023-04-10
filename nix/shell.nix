@@ -1,7 +1,7 @@
 with import <nixpkgs> {}; {
   projectEnv = stdenv.mkDerivation {
     name = "ncurses";
-    buildInputs = [stdenv freetype];
+    buildInputs = [stdenv freetype libpng];
     propagateBuildInputes = [ncurses];
   };
 }

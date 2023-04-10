@@ -29,7 +29,8 @@ int main(int argc, char ** argv) {
         the_canvas = Gnp(the_user_params);
       else
         the_canvas = Gnm(the_user_params);
-      write_canvas(the_canvas, the_user_params->out_file);
+      write_canvas_png(the_canvas, the_user_params->out_file);
+      // write_canvas(the_canvas, the_user_params->out_file);
       free_canvas(the_canvas);
       free_user_params(the_user_params);
     }

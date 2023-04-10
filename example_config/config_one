@@ -3,5 +3,5 @@ CANVAS_COLOR 0,10,11
 FONT_SIZE    60
 PATH_TO_FONT "fonts/FiraCode-Bold.ttf"
 CANVAS_DIMS  1000
-GNM          15, 15
-OUT_FILE     "test1.ppm"
+GNP          25, 1.0
+OUT_FILE     "test1.png"
