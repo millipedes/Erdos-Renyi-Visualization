@@ -21,18 +21,27 @@ int main(int argc, char ** argv) {
     free_canvas(the_canvas);
   } else {
     for(int i = 1; i < argc; i++) {
-      user_params the_user_params = init_user_params(argv[i]);
-      canvas the_canvas = NULL;
-      if(!the_user_params->the_g_struct)
-        the_canvas = Gnm(NULL);
-      else if(the_user_params->the_g_struct->m_or_p == 'p')
-        the_canvas = Gnp(the_user_params);
-      else
-        the_canvas = Gnm(the_user_params);
-      write_canvas_png(the_canvas, the_user_params->out_file);
-      // write_canvas(the_canvas, the_user_params->out_file);
-      free_canvas(the_canvas);
-      free_user_params(the_user_params);
+      if(argv[i][0] == '-')
+        i++;
+      else {
+        path_wrapper the_path_wrapper = init_path_wrapper(argv[i]);
+        user_params the_user_params = init_user_params(the_path_wrapper->path_file);
+        canvas the_canvas = NULL;
+        if(!the_user_params->the_g_struct)
+          the_canvas = Gnm(NULL);
+        else if(the_user_params->the_g_struct->m_or_p == 'p')
+          the_canvas = Gnp(the_user_params);
+        else
+          the_canvas = Gnm(the_user_params);
+        if(the_user_params->out_file->type == PNG
+            || the_user_params->out_file->type == NONE)
+          write_canvas_png(the_canvas, the_user_params->out_file->path_file);
+        else
+          write_canvas(the_canvas, the_user_params->out_file->path_file);
+        free_path_wrapper(the_path_wrapper);
+        free_canvas(the_canvas);
+        free_user_params(the_user_params);
+      }
     }
   }
   return 0;

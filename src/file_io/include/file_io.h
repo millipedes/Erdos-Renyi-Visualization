@@ -12,6 +12,7 @@
 
 #include <string.h>
 #include "../../canvas/include/pixel.h"
+#include "../../file_preprocessing/include/file_preprocessing.h"
 
 #define MAX_PARAM_SIZE       64
 #define MAX_CONFIG_LINE_SIZE 512
@@ -54,7 +55,7 @@ typedef struct USER_PARAMS_T {
   pixel node_color;
   pixel canvas_color;
   g_struct the_g_struct;
-  char * out_file;
+  path_wrapper out_file;
   char * path_to_font;
   int font_size;
   int canvas_dims;

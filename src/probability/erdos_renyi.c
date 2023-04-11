@@ -33,12 +33,14 @@ canvas Gnp(user_params the_user_params) {
       free_g_struct(the_g_struct);
       the_g_struct = the_user_params->the_g_struct;
     }
-  }
-  if(the_user_params->canvas_color)
-    the_canvas = init_canvas(canvas_dims, canvas_dims,
-        the_user_params->canvas_color->r, the_user_params->canvas_color->g,
-        the_user_params->canvas_color->b);
-  else
+    if(the_user_params->canvas_color)
+      the_canvas = init_canvas(canvas_dims, canvas_dims,
+          the_user_params->canvas_color->r, the_user_params->canvas_color->g,
+          the_user_params->canvas_color->b);
+    else
+      the_canvas = init_canvas(canvas_dims, canvas_dims, MIN_COL, MIN_COL,
+          MIN_COL);
+  } else
     the_canvas = init_canvas(canvas_dims, canvas_dims, MIN_COL, MIN_COL,
         MIN_COL);
   graph = make_circular_node_collection(the_canvas, the_g_struct->n,
@@ -83,19 +85,21 @@ canvas Gnm(user_params the_user_params) {
       free_g_struct(the_g_struct);
       the_g_struct = the_user_params->the_g_struct;
     }
-  }
+    if(the_user_params->canvas_color)
+      the_canvas = init_canvas(canvas_dims, canvas_dims,
+          the_user_params->canvas_color->r, the_user_params->canvas_color->g,
+          the_user_params->canvas_color->b);
+    else
+      the_canvas = init_canvas(canvas_dims, canvas_dims, MIN_COL, MIN_COL,
+          MIN_COL);
+  } else
+    the_canvas = init_canvas(canvas_dims, canvas_dims, MIN_COL, MIN_COL,
+        MIN_COL);
   int tmp = the_g_struct->m;
   int * i_collection = calloc(the_g_struct->m, sizeof(int));
   int * j_collection = calloc(the_g_struct->m, sizeof(int));
-  if(the_user_params->canvas_color)
-    the_canvas = init_canvas(canvas_dims, canvas_dims,
-        the_user_params->canvas_color->r, the_user_params->canvas_color->g,
-        the_user_params->canvas_color->b);
-  else
-    the_canvas = init_canvas(canvas_dims, canvas_dims, MIN_COL, MIN_COL,
-        MIN_COL);
-  graph = make_circular_node_collection(the_canvas, the_g_struct->n, path_to_font, font_size,
-      canvas_dims);
+  graph = make_circular_node_collection(the_canvas, the_g_struct->n,
+      path_to_font, font_size, canvas_dims);
   while(tmp > 0) {
     i_rand = rand() % the_g_struct->n;
     j_rand = rand() % the_g_struct->n;

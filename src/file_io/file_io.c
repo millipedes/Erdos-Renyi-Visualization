@@ -107,7 +107,9 @@ user_params init_user_params(char * config_file) {
       else
         the_user_params->the_g_struct = parse_g_struct(buf, GNM_LEN, 'm');
     } else if(!strncmp(OUT_FILE, buf, OUT_FILE_LEN)) {
-      the_user_params->out_file = parse_file(buf, (int)OUT_FILE_LEN);
+      char * out_file = parse_file(buf, (int)OUT_FILE_LEN);
+      the_user_params->out_file = init_path_wrapper(out_file);
+      free(out_file);
     }
     current_index = 0;
   }
@@ -201,7 +203,7 @@ void debug_user_params(user_params the_user_params) {
   if(the_user_params->path_to_font)
     printf("Path: `%s`\n", the_user_params->path_to_font);
   if(the_user_params->out_file)
-    printf("Path: `%s`\n", the_user_params->out_file);
+    debug_path_wrapper(the_user_params->out_file);
   printf("Font Size: %d, Canvas Dims: %d\n", the_user_params->font_size,
       the_user_params->canvas_dims);
 }
@@ -220,7 +222,7 @@ void free_user_params(user_params the_user_params) {
     if(the_user_params->the_g_struct)
       free_g_struct(the_user_params->the_g_struct);
     if(the_user_params->out_file)
-      free(the_user_params->out_file);
+      free_path_wrapper(the_user_params->out_file);
     if(the_user_params->path_to_font)
       free(the_user_params->path_to_font);
     free(the_user_params);

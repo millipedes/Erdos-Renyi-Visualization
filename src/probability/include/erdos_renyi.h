@@ -10,8 +10,8 @@
 #ifndef ERD_H
 #define ERD_H
 
-#include "../../file_io/include/file_io.h"
 #include "../../canvas/include/canvas.h"
+#include "../../file_io/include/file_io.h"
 
 #define DEFAULT_NODE_COLOR   init_pixel(0, 190, 255)
 #define DEFAULT_CANVAS_COLOR init_pixel(0, 0, 0)
