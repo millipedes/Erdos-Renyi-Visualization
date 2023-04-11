@@ -1,5 +1,20 @@
+/**
+ * @file   file_preprocessing.c
+ * @brief  This file contains the functions that related to the path wrapper
+ * that helps the program process files (includes data such as path, file, path
+ * and file, extension).
+ * @author Matthew C. Lindeman
+ * @date   April 11, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #include "include/file_preprocessing.h"
 
+/**
+ * This function returns the string of the file extension for the given type.
+ * @param type - The type of file extension.
+ * @return  .\ - The string rep of the file extension.
+ */
 const char * file_type_to_string(file_type type) {
   switch(type) {
     case PNG:  return "png";
@@ -9,6 +24,12 @@ const char * file_type_to_string(file_type type) {
   return NULL;
 }
 
+/**
+ * This function initializes a path wrapper with the given path and file.
+ * @param         path_file - The path and file name of the path wrapper to be
+ * made.
+ * @return the_path_wrapper - The inited path wrapper.
+ */
 path_wrapper init_path_wrapper(const char * path_file) {
   path_wrapper the_path_wrapper = calloc(1, sizeof(struct PATH_WRAPPER_T));
   char * end_of_path = NULL;
@@ -37,6 +58,12 @@ path_wrapper init_path_wrapper(const char * path_file) {
   return the_path_wrapper;
 }
 
+/**
+ * This function determines if there is an extension in the given file name and
+ * if so returns the file_type (enumeration) of the extension.
+ * @param file_name - The name of the file.
+ * @return       .\ - The file_type of the extension.
+ */
 int find_extention(const char * file_name) {
   char * beg_of_ext = NULL;
   if((beg_of_ext = strrchr(file_name, EXT_DELIMITER)))
@@ -47,6 +74,11 @@ int find_extention(const char * file_name) {
   return NONE;
 }
 
+/**
+ * This function debugs a given path wrapper.
+ * @param the_path_wrapper - The path wrapper to be debugged.
+ * @return             N/a
+ */
 void debug_path_wrapper(path_wrapper the_path_wrapper) {
   printf("[PATH_WRAPPER]\n");
   printf("path_file: `%s`\n", the_path_wrapper->path_file);
@@ -55,6 +87,11 @@ void debug_path_wrapper(path_wrapper the_path_wrapper) {
   printf("type: `%s`\n", file_type_to_string(the_path_wrapper->type));
 }
 
+/**
+ * This function frees a given path wrapper.
+ * @param the_path_wrapper - The path wrapper to be freed.
+ * @return             N/a
+ */
 void free_path_wrapper(path_wrapper the_path_wrapper) {
   if(the_path_wrapper) {
     if(the_path_wrapper->path_file)

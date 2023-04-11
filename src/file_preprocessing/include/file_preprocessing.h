@@ -1,3 +1,11 @@
+/**
+ * @file   file_preprocessing.h
+ * @brief  This file contains the function definitions for file_preprocessing.c.
+ * @author Matthew C. Lindeman
+ * @date   April 11, 2023
+ * @bug    None known
+ * @todo   Nothing
+ */
 #ifndef FIL_H
 #define FIL_H
 
