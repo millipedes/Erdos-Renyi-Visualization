@@ -5,21 +5,21 @@ can virtualize the method and take statistics over the virtualization.
 
 ![Example](/reference_images/example_image.png)
 
-It does this by producing [netpbm files](https://en.wikipedia.org/wiki/Netpbm).
-For more information on netpbm files and my recomendations on using them see the
-`Running` section below.
+It does this by producing png or
+[netpbm files](https://en.wikipedia.org/wiki/Netpbm).
 
 # :hammer: Building
 This program relies on:
   - gcc
   - GNUMake
   - [FreeType C library](https://freetype.org/)
+  - [LibPNG](http://www.libpng.org/pub/png/libpng.html)
 
 These can be installed from any Debian based distro (or any distro with apt on
 it) via:
 ```
 sudo apt update && sudo apt upgrade
-sudo apt install gcc make libfreetype6
+sudo apt install gcc make libfreetype6 libpng16-16
 ```
 A small node, as I devlope on NixOS, you will notice a nix script in this repo,
 to be able to compile the program (assuming that you have `gcc` and `make` in
@@ -70,33 +70,18 @@ FONT_SIZE    60
 PATH_TO_FONT "fonts/FiraCode-Bold.ttf"
 CANVAS_DIMS  1000
 GNM          15, 15
-OUT_FILE     "test1.ppm"
+OUT_FILE     "test1.png"
 ```
 These parameters are pretty self explanitory, you can use single or double
 quotes for the file names. Also note that any `.ttf` font file can be used, just
 specify the correct path from where you are running the binary.
 
+My program supports both `.ppm` file extensions and `.png` file extensions. If
+no extension is specified in `OUT_FILE` then the program by default will output
+a png formatted file.
+
 Also it should be noted that any of these parameters can just not be specified,
 but they will just go to the defaults.
-
-## A Note For .ppm
-There are two options for getting around this:
- - Get an image viewer to view the `.ppm` file.
- - Get a converion tool to convert to .png.
-### Image Viewer
-I recommend feh. For distros with apt:
-```
-sudo apt update && sudo apt upgrade
-sudo apt install feh
-feh name_of_file.ppm
-```
-### Image converter
-I recommend ImageMagick. For distros with apt:
-```
-sudo apt update && sudo apt upgrade
-sudo apt install ImageMagick
-convert name_of_file.ppm name_of_file.png
-```
 
 # :thought_balloon: Theory
 
