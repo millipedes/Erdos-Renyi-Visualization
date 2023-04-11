@@ -1,4 +1,5 @@
 CC=gcc -g -Wall -Wextra
+UBCC=gcc -g -Wall -Wextra -I/usr/include/freetype2
 POST_FLAGS=-lm -lfreetype -lpng
 
 CTESTS=$(wildcard ./tests/*.c)

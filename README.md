@@ -19,7 +19,7 @@ These can be installed from any Debian based distro (or any distro with apt on
 it) via:
 ```
 sudo apt update && sudo apt upgrade
-sudo apt install gcc make libfreetype6 libpng16-16
+sudo apt install gcc make libfreetype6-dev libpng-dev
 ```
 A small node, as I devlope on NixOS, you will notice a nix script in this repo,
 to be able to compile the program (assuming that you have `gcc` and `make` in
