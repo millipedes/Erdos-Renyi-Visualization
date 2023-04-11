@@ -29,6 +29,9 @@ nix-shell ./nix/shell.nix
 ```
 This will make a shell session for which the FreeType library is installed.
 
+Also I just tested this on Ubuntu (22.04) and you may need to change all
+instances of `CC` to `UBCC` in the Makefile.
+
 Additionally you will need a font file in `.ttf` format. For my examples I used
 [FiraCode-Bold font](https://github.com/tonsky/FiraCode/releases). In order for
 my program to work with the default parameters, you will need to get the
