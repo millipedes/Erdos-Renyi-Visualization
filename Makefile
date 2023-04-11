@@ -42,7 +42,7 @@ objects: $(HCANVAS) $(CCANVAS) $(CMOVE) $(CMAIN) $(CFPP) $(HFPP) $(CTESTS) $(HTE
 	$(CC) -c ./src/main/main.c -o ./src/main/main.o $(POST_FLAGS)
 
 vim:
-	nvim $(CCANVAS) $(CMAIN) $(CTESTS) $(CPROB) $(CFIO)
+	nvim $(CCANVAS) $(CMAIN) $(CTESTS) $(CPROB) $(CFIO) $(CFPP)
 
 vimh:
 	nvim $(HFILES) 
@@ -67,7 +67,7 @@ plant:
 	convert docs/uml.png -channel RGB -negate docs/uml.png
 
 git-update:
-	git add Makefile README.md src/ nix/ tests/ example_config/ reference_images/
+	git add Makefile README.md src/ nix/ tests/ example_config/ reference_images/ docs/
 
 clean:
 	- rm $(OCANVAS)
